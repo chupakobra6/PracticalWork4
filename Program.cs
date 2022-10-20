@@ -8,7 +8,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.CursorVisible = true; // need change
+            Console.CursorVisible = false; // changed
 
             List<Note> notes = new List<Note>();
 
@@ -59,7 +59,7 @@ namespace ConsoleApp1
 
                 else if ((key.Key == ConsoleKey.X))
                 {
-                    Egg();
+                    Egg(position, foreachI);
                 }
             }
             while (true);
@@ -229,10 +229,10 @@ namespace ConsoleApp1
             Console.WriteLine("Содержание: " + currentNotes[position - 5].Description);
         }
 
-        static void Egg()
+        static void Egg(int position, int foreachI)
         {
             Console.CursorVisible = false;
-            Console.SetCursorPosition(0, 6);
+            Console.SetCursorPosition(0, position + foreachI + 1);
 
             string egg = "Дорогой дневник..\nСегодня я написал практическую по C# и получил пятёрку по ней..\nЯ пришёл домой и рассказал об этом маме, мама похвалила меня и дала мне печеньку..\nЯ съел эту печеньку и получил сахарный диабет, теперь я не пишу практические по C# ;(";
 
@@ -244,11 +244,11 @@ namespace ConsoleApp1
                 Thread.Sleep(30);
             }
 
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
 
             for (int repeats = 0; repeats < 5; repeats++)
             {
-                Console.SetCursorPosition(0, 6 + repeats);
+                Console.SetCursorPosition(2, 6 + foreachI + 1);
 
                 int lenght = 0;
 
