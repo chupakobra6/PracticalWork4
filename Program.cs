@@ -39,7 +39,7 @@ namespace ConsoleApp1
 
                 if ((key.Key == ConsoleKey.UpArrow) || (key.Key == ConsoleKey.W) || (key.Key == ConsoleKey.DownArrow) || (key.Key == ConsoleKey.S))
                 {
-                    position = Arrows(key, position);
+                    position = Arrows(key, position, foreachI);
                 }
 
                 else if (position == 2 & ((key.Key == ConsoleKey.LeftArrow) || (key.Key == ConsoleKey.A) || (key.Key == ConsoleKey.RightArrow) || (key.Key == ConsoleKey.D)))
@@ -57,7 +57,7 @@ namespace ConsoleApp1
                     Information(foreachI, dateTime, position, notes);
                 }
 
-                else if ((key.Key == ConsoleKey.X))
+                else if (position > 4 && key.Key == ConsoleKey.X)
                 {
                     Egg(position, foreachI);
                 }
@@ -65,7 +65,7 @@ namespace ConsoleApp1
             while (true);
         }
 
-        static int Arrows(ConsoleKeyInfo key, int position)
+        static int Arrows(ConsoleKeyInfo key, int position, int foreachI)
         {
             int prevPosition = 0;
 
@@ -86,6 +86,7 @@ namespace ConsoleApp1
 
             else if ((key.Key == ConsoleKey.DownArrow) || (key.Key == ConsoleKey.S))
             {
+
                 prevPosition = position;
                 position++;
             }
@@ -136,7 +137,7 @@ namespace ConsoleApp1
             for (int i = 0; i <= foreachI; i++)
             {
                 Console.SetCursorPosition(2, 5 + i);
-                
+
                 for (int j = 0; j < 59; j++)
                 {
                     Console.Write("  ");
@@ -231,10 +232,9 @@ namespace ConsoleApp1
 
         static void Egg(int position, int foreachI)
         {
-            Console.CursorVisible = false;
             Console.SetCursorPosition(0, position + foreachI + 1);
 
-            string egg = "Дорогой дневник..\nСегодня я написал практическую по C# и получил пятёрку по ней..\nЯ пришёл домой и рассказал об этом маме, мама похвалила меня и дала мне печеньку..\nЯ съел эту печеньку и получил сахарный диабет, теперь я не пишу практические по C# ;(";
+            string egg = "  Дорогой дневник..\nСегодня я написал практическую по C# и получил пятёрку по ней..\nЯ пришёл домой и рассказал об этом маме, мама похвалила меня и дала мне печеньку..\nЯ съел эту печеньку и получил сахарный диабет, теперь я не пишу практические по C# ;(";
 
             Thread.Sleep(1000);
 
@@ -248,11 +248,11 @@ namespace ConsoleApp1
 
             for (int repeats = 0; repeats < 5; repeats++)
             {
-                Console.SetCursorPosition(2, 6 + foreachI + 1);
+                Console.SetCursorPosition(0, position + foreachI + 1 + repeats);
 
                 int lenght = 0;
 
-                if (repeats == 0) { lenght = 17; }
+                if (repeats == 0) { lenght = 19; }
                 else if (repeats == 1) { lenght = 63; }
                 else if (repeats == 2) { lenght = 82; }
                 else if (repeats == 3) { lenght = 85; }
@@ -263,7 +263,6 @@ namespace ConsoleApp1
                     Thread.Sleep(30);
                 }
             }
-            Console.CursorVisible = true;
         }
     }
 }
